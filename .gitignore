@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# media-kansio ja sen sisältö
+/media
+
+# staticfiles-kansio ja sen sisältö
+/staticfiles

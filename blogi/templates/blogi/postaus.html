@@ -1,13 +1,18 @@
-<html>
-    <head>
-        <title>Koodausblogi</title>
-    </head>
-    <body>
-        <h1>Koodausblogi - Postaus</h1>
-        <h2>{{postaus.otsikko}}</h2>
-        <p>
-            {{postaus.teksti}}
-        </p>
-        <a href="{% url 'postauslista' %}">Postaukset</a>
-    </body>
-</html>
+{% extends "blogi/base.html" %}
+
+{% block content %}
+
+{# Postauksen otsikko laitetaan <h1>-tagiin #}
+<h1>{{postaus.otsikko}}</h1>
+
+{# Postauksen sisältö (teksti-kentästä) laitetaan <p>-tagin sisälle #}
+<p>
+    {{postaus.teksti}}
+</p>
+
+{# Lisää sivulle <img>-tagi kuvaa varten, jos postauksella on kuva #}
+{% if postaus.kuva %}
+<img src="{{postaus.kuva.url}}" class="img-fluid"/>
+{% endif %}
+
+{% endblock %}
