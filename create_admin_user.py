@@ -10,9 +10,15 @@ def main():
     django.setup()
 
     username = os.environ.get('ADMIN_USER_NAME', 'admin')
-    password = os.environ['ADMIN_USER_PASSWORD']
+    password = os.environ.get['ADMIN_USER_PASSWORD']
     email = os.environ.get('ADMIN_USER_EMAIL', '')
 
+    users = get_user_model().object
+    
+    if users.filter(username=username).exist():
+        print(f"user {username!r} already exist")
+        return
+    
     print(f"Creating superuser {username!r}")
     get_user_model().objects.create_superuser(username, email, password)
 
